@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Pagina;
 import service.BuscadorService;
 
-//informa al servidor de aplicacion que la clase es un servlet y tiene 
+//informa al servidor de aplicacion que la clase es un servlet y tiene
 //la dirreccion indicada que es la de abajo
 @WebServlet("/BuscadorServlets")//@WebServlet esto es una anotacion para el tomcat
 public class BuscadorServlets extends HttpServlet {
