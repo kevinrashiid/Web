@@ -12,7 +12,7 @@ public class BuscadorService {
 			new Pagina(new String[]{"juegos","merchandising"},"www.friky.es","Friky","Regalos originales")
 			);
 //recibe la tematica y devuelve la lista de paginas asocada a dicha tematica
-	public List<Pagina> listaPaginas(String tema){
+	public List<Pagina> buscardor(String tema){
 			return paginas.stream()
 					.filter(p->Arrays.stream(p.getTematica()).anyMatch(c->c.equals(tema))) //Stream<Pagina>
 					.toList();	
@@ -20,8 +20,9 @@ public class BuscadorService {
 //devuelve la lista de todos los temas registrados
 	public List<String> temasRegistrados(){
 		return paginas.stream()
-				.flatMap(c->c.getTematica().equals(c))
-				.map(a->a)
+				.flatMap(c->Arrays.stream(c.getTematica()))//Stream<String>
+				.distinct()//eliminamos los duplicados
+				.toList();//convertimos a lista
 	
 	}
-}
+} 
