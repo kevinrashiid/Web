@@ -24,6 +24,8 @@ public class AlumnosServlet extends HttpServlet {
 		FormacionService servletAlumno=new FormacionService();
 		String name=request.getParameter("alum");
 		List<Alumno> alumno=servletAlumno.listaAlumnos(name);
+		double media=servletAlumno.mediaCurso(name);
+		request.setAttribute("mediaCurso", media);		
 		request.setAttribute("alumnoCurso", alumno);
 		request.getRequestDispatcher("alumnos.jsp").forward(request, response);
 	}

@@ -23,6 +23,10 @@
 		<br>
 		<br>
 		<a href="ConsultaServlet">Volver</a>
+		<!--recogemos el atributo media y lo mostramos en la pagina-->
+		<%double media=(Double)request.getAttribute("mediaCurso");%>
+		<h2>Nota media:<%=media %></h2>
+		
 	</center>
 </body>
 </html>
