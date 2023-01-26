@@ -1,6 +1,7 @@
 package service;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream.Filter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -30,7 +31,10 @@ public class EmpleadosService {
 	}
 	//metodo que devuelve la lista de empleados de un determinado departamento
 	public  List<empleadosModel> consultaEmpleado(String departamento) {
-		
+		List<String> aux=Files.readAllLines(pt);
+		return aux.stream()
+				.filter(c->c.equalsIgnoreCase(departamento))
+				.toList()
 		
 	}
 	//metodo que devuelve una lista de departamentos
