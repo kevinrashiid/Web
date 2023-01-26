@@ -31,7 +31,7 @@ public class EmpleadosService {
 	//metodo que devuelve la lista de empleados de un determinado departamento
 	public  List<empleadosModel> consultaEmpleado(String depa) {
 		return Files.lines(pt)
-				.map(c->c.split(","))
+				.map(c->c.split(",")
 				.filter(f->f.getDepartamente().equals(depa))
 				.toList()
 		
