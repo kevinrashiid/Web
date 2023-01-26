@@ -23,6 +23,5 @@ public class BuscadorService {
 				.flatMap(c->Arrays.stream(c.getTematica()))//Stream<String>
 				.distinct()//eliminamos los duplicados
 				.toList();//convertimos a lista
-	
 	}
 } 
