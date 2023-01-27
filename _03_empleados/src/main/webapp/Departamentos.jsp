@@ -9,17 +9,13 @@
 </head>
 <body>
 	<center>
-		<form action="ConsultaEmpleadoServlet"
+		<form action="VerEmpleado">
 				Selecciones departamento:
-				<select name="departamento"
-				<%List<String> depars=(List<String>)request.getAttribute(departamento);
+				<select name="departamento">
+				<%List<String> depars=(List<String>)request.getAttribute("departamentos");
 				for(String d:depars){%>
 					<option value="<%=d%>"><%=d%></option>
-				
-					
-					
 					<%}%>
-				
 				</select>
 				<br><br>
 				<input type="submit"value="ver empleados">
