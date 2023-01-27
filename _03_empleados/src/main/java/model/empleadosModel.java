@@ -11,4 +11,6 @@ public class empleadosModel {
 	private String departamento; 
 	private double salario; 
 	private Date fechaEmpleado;
+	
+	
 }
