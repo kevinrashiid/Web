@@ -30,14 +30,14 @@ public class EmpleadosService {
 		}
 	}
 	//metodo que devuelve la lista de empleados de un determinado departamento
-	public  List<empleadosModel> consultaEmpleado(String depa) {
+	public  List<empleadosModel> consultaEmpleado(String departamento) {
 		try {
 			return Files.lines(pt)//Stream<String>
 			.map(s->{
 				String[] datos=s.split("[,]");
 				return new empleadosModel(datos[0],datos[1],Double.parseDouble(datos[2]),LocalDate.parse(datos[3]));
 			})//Stream<Empleado>
-			.filter(e->e.getDepartamento().equals(depa))//Stream<Empleado>
+			.filter(e->e.getDepartamento().equals(departamento))//Stream<Empleado>
 			.toList();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

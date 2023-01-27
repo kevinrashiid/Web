@@ -23,11 +23,11 @@ public class VerEmpleadoServlet extends HttpServlet {
 		//lo guardamos en un atributo y transferimos el control a la JSP
 		
 		EmpleadosService verEmpleado=new EmpleadosService();
-		String depa=request.getParameter("departamento");
-		List<empleadosModel> listaEmpleados=verEmpleado.consultaEmpleado(depa);
-		request.setAttribute("emplados" listaEmpleados);
+		String departamento=request.getParameter("departamento");
+		List<empleadosModel> empleado=verEmpleado.consultaEmpleado(departamento);
+		request.setAttribute("empleados",empleado);
 		//le mandamos tambien le nombre del departamento seleccionado
-		request.setAttribute("depart" depa);
-		request.getAttribute("empleados.jsp").forward(request, response);
+		request.setAttribute("departamento",departamento);
+		request.getRequestDispatcher("empleados.jsp").forward(request, response);
 	}
 }

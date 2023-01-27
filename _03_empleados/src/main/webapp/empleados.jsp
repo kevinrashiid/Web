@@ -13,6 +13,7 @@
 		<%List<empleadosModel> emps=(List<empleadosModel> request.getAttribute("empleados"); %>
 		<table border="1";
 			<tr><th>Nombre</th><th>Departamento</th><th>Salario</th></tr>
+<!-- Recorro la lista de empleados y generados una fila en la tabla por cada empleado -->
 			<%for(Empleado e:emps){%>
 				<tr>
 					<td><%=e.getNombre %></td>
