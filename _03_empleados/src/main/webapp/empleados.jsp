@@ -19,6 +19,8 @@
 					<td><%=e.getDepartamento %></td>
 					<td><%=e.getSalario %></td>
 					<td><%=e.getFecha%></td>
+					
+					
 				<tr>
 			<%}%>
 		</table>
