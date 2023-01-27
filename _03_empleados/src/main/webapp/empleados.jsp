@@ -14,7 +14,7 @@
 		<table border="1";>
 			<tr><th>Nombre</th><th>Departamento</th><th>Salario</th></tr>
 <!-- Recorro la lista de empleados y generados una fila en la tabla por cada empleado -->
-			<%for(empleadosModel e:emps){%>
+			<%for(empleadosModel e:emps){ %>
 				<tr>
 					<td><%=e.getNombreEmpleado()%></td>
 					<td><%=e.getDepartamento() %></td>

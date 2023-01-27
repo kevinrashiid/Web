@@ -13,14 +13,14 @@ import model.empleadosModel;
 import service.EmpleadosService;
 
 
-@WebServlet("/AltaEmpleadoServlet")
+@WebServlet("/ConsultaEmpleadoServlet")
 public class ConsultaEmpleadoServlet extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		EmpleadosService empleadosService=new EmpleadosService();
 		List<String> tr=empleadosService.listaDepartamentos();
-		request.setAttribute("consultaEmpleado", tr);
-		request.getRequestDispatcher("seleccion.jsp").forward(request, response);
+		request.setAttribute("departamentos", tr);
+		request.getRequestDispatcher("Departamentos.jsp").forward(request, response);
 	}
 }

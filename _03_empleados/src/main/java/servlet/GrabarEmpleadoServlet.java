@@ -28,10 +28,10 @@ public class GrabarEmpleadoServlet extends HttpServlet {
 		String departamento=request.getParameter("departamento");
 		//pasamos el salio y lo convertimos de string a double
 		double salario=Double.parseDouble(request.getParameter("salario"));
-		//pasamos el parametro de la fecha actual
+		//pasamos el parametro de la fecha ACTUAL
 		LocalDate fecha=LocalDate.now();
 		empleadosModel altaTrabaja=new empleadosModel(name,departamento,salario,fecha);
 		grabarEmpleadoService.altaEmpleado(altaTrabaja);
-		request.getRequestDispatcher("Inicio.html").forward(request, response);
+		request.getRequestDispatcher("inicio.html").forward(request, response);
 	}
 }

@@ -15,14 +15,13 @@ public class EmpleadosService {
  lo que quiere que se haga 
  */
 	//creamos el fichero con Path y le lo identificamos con una variable
-	private Path pt=Path.of("c:\\ficheros\\empleados.txt");
+	 Path pt=Path.of("/Users/kevinrashid/Documents/ficheros/empleados.csv");
 	
 	//metodo que reciba un empleado y lo guardamos
 	public  void altaEmpleado(empleadosModel empleado) {
-		String linea=empleado.getNombreEmpleado()
-				+","+empleado.getDepartamento()
-				+","+empleado.getSalario()
-				+","+empleado.getFechaEmpleado();
+		//tengo que construir una cadena de caracteres con los datos
+		//del empleado, para poder guardarla en el fichero con la forma separada
+		String linea=empleado.getNombreEmpleado()+","+empleado.getDepartamento()+","+empleado.getSalario()+","+empleado.getFechaEmpleado();
 		try {
 			Files.writeString(pt, linea+System.lineSeparator(), StandardOpenOption.APPEND);
 		} catch (IOException e) {
