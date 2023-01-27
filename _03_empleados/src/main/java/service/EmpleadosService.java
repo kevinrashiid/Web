@@ -15,7 +15,7 @@ public class EmpleadosService {
  lo que quiere que se haga 
  */
 	//creamos el fichero con Path y le lo identificamos con una variable
-	 Path pt=Path.of("/Users/kevinrashid/Documents/ficheros/empleados.csv");
+	 Path pt=Path.of("/Users/kevinrashid/Documents/ficheros/empleados.txt");
 	
 	//metodo que reciba un empleado y lo guardamos
 	public  void altaEmpleado(empleadosModel empleado) {
@@ -39,7 +39,6 @@ public class EmpleadosService {
 			.filter(e->e.getDepartamento().equals(departamento))//Stream<Empleado>
 			.toList();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return List.of(); //devuelve lista vacía
 		}
