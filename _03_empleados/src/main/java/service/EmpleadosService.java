@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
 import java.util.List;
 
 import model.empleadosModel;
@@ -30,15 +31,30 @@ public class EmpleadosService {
 	}
 	//metodo que devuelve la lista de empleados de un determinado departamento
 	public  List<empleadosModel> consultaEmpleado(String depa) {
-		return Files.lines(pt)
-				.map(c->c.split(",")
-				.filter(f->f.getDepartamente().equals(depa))
-				.toList()
-		
-		
+		try {
+			return Files.lines(pt)//Stream<String>
+			.map(s->{
+				String[] datos=s.split("[,]");
+				return new empleadosModel(datos[0],datos[1],Double.parseDouble(datos[2]),LocalDate.parse(datos[3]));
+			})//Stream<Empleado>
+			.filter(e->e.getDepartamento().equals(depa))//Stream<Empleado>
+			.toList();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return List.of(); //devuelve lista vacía
+		}
 	}
 	//metodo que devuelve una lista de departamentos
 	public List<String> listaDepartamentos(){
-		
+		try {
+			return Files.lines(pt)
+					.map(s->s.split("[,]")[1])
+					.distinct()
+					.toList();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return List.of(); //devuelve lista vacía
+		}
 	}
 }
