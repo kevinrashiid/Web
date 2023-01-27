@@ -24,5 +24,4 @@ public class BuscadorService {
 				.distinct()//eliminamos los duplicados
 				.toList();//convertimos a lista
 	}
-} 
-
+}

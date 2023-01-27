@@ -19,14 +19,11 @@
 					<td><%=e.getDepartamento %></td>
 					<td><%=e.getSalario %></td>
 					<td><%=e.getFecha%></td>
-					
-					
 				<tr>
 			<%}%>
 		</table>
 		<br><br>
 		<a href="inicio.html">Volver</a>
 	</center>
-
 </body>
 </html>
