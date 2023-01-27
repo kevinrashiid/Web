@@ -17,6 +17,8 @@ public class GrabarEmpleadoServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EmpleadosService grabarEmpleadoService=new EmpleadosService();
 		
+		String name=request.getParameter("empleado");
+		String departamento=request.getParameter("departamento");
 	
 	}
 }
