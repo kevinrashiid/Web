@@ -51,6 +51,8 @@ public class TestEscritura {
 		catch(IOException ex) {
 			ex.printStackTrace();
 			return;
+			
+			
 		}
 		
 		try(FileWriter fw=new FileWriter(url);){//modo sobrescritura
