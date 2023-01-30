@@ -24,7 +24,7 @@ public class VerEmpleadoServlet extends HttpServlet {
 		
 		EmpleadosService verEmpleado=new EmpleadosService();
 		String departamento=request.getParameter("departamento");
-		List<empleadosModel> empleado=verEmpleado.consultaEmpleado(departamento);
+		List<empleadosModel> empleado=verEmpleado.empleadosDepartamento(departamento);
 		request.setAttribute("empleados",empleado);
 		//le mandamos tambien le nombre del departamento seleccionado
 		request.setAttribute("departamento",departamento);

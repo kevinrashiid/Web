@@ -31,7 +31,7 @@ public class GrabarEmpleadoServlet extends HttpServlet {
 		//pasamos el parametro de la fecha ACTUAL
 		LocalDate fecha=LocalDate.now();
 		empleadosModel altaTrabaja=new empleadosModel(name,departamento,salario,fecha);
-		grabarEmpleadoService.altaEmpleado(altaTrabaja);
+		grabarEmpleadoService.guardarEmpleado(altaTrabaja);
 		request.getRequestDispatcher("inicio.html").forward(request, response);
 	}
 }
