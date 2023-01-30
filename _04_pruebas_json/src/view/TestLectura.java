@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 
 import model.CursoJavaBeans;
 
-public class Test {
+public class TestLectura {
 
 	public static void main(String[] args) {
 		

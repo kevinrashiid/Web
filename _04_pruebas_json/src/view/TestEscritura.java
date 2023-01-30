@@ -14,6 +14,7 @@ public class TestEscritura {
 
 	public static void main(String[] args) {
 		String url="/Users/kevinrashid/Documents/ficheros/Cursos.json";
+		
 		//escritura en un json
 		/*CursoJavaBeans curso=new CursoJavaBeans("al1","JavaScript",6.7);
 		//recuperamos el JSON completo. añadimos el objeto y despues
@@ -51,12 +52,7 @@ public class TestEscritura {
 		catch(IOException ex) {
 			ex.printStackTrace();
 			return;
-			
-			
-			
-			
 		}
-		
 		try(FileWriter fw=new FileWriter(url);){//modo sobrescritura
 			//y escribimos en el fichero la lista entera
 			gson.toJson(lista, fw);

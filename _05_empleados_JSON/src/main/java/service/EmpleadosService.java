@@ -1,11 +1,15 @@
 package service;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
+
+import com.google.gson.Gson;
 
 import model.empleadosModel;
 
@@ -15,19 +19,33 @@ public class EmpleadosService {
  lo que quiere que se haga 
  */
 	//creamos el fichero con Path y le lo identificamos con una variable
-	 Path pt=Path.of("/Users/kevinrashid/Documents/ficheros/empleados.txt");
+	//hay que leer en los 3 metodos para pasarlo a un Array []
+	String url="/Users/kevinrashid/Documents/ficheros/empleados.json";
 	
 	//metodo que reciba un empleado y lo guardamos
+	Gson gson=new Gson();
+	//cuando necesites un stream de empleados o necesites leer para pasarlo a un Array tenemos este metodo
+	private Stream<empleadosModel> getJsonStream(){//metodo para usar un Stream de empleados
+		try(FileReader fr=new FileReader(url);){
+			empleadosModel[] empleados=gson.fromJson(fr, empleadosModel[].class);
+			return Arrays.stream(empleados);
+		}
+		catch(IOException ex) {
+			ex.printStackTrace();
+			return Stream.empty();//Esto genera un stream vacio
+		}
+	}
 	public  void altaEmpleado(empleadosModel empleado) {
 		//tengo que construir una cadena de caracteres con los datos
 		//del empleado, para poder guardarla en el fichero con la forma separada
 		String linea=empleado.getNombreEmpleado()+","+empleado.getDepartamento()+","+empleado.getSalario()+","+empleado.getFechaEmpleado();
 		try {
-			Files.writeString(pt, linea+System.lineSeparator(), StandardOpenOption.APPEND);
+			Files.writeString(url, linea+System.lineSeparator(), StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+		
 	//metodo que devuelve la lista de empleados de un determinado departamento
 	public  List<empleadosModel> consultaEmpleado(String departamento) {
 		try {
@@ -44,16 +62,15 @@ public class EmpleadosService {
 		}
 	}
 	//metodo que devuelve una lista de departamentos
-	public List<String> listaDepartamentos(){
-		try {
-			return Files.lines(pt)
+	public Stream<empleadosModel> listaDepartamentos(){
+		try { return getJsonStream()
 					.map(s->s.split("[,]")[1])
 					.distinct()
 					.toList();
 		} catch (IOException e) {
 			e.printStackTrace();
-			return List.of(); //devuelve lista vacía
+			return Stream.empty();//Esto genera un stream vacio
+
 		}
 	}
-
 }
