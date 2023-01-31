@@ -16,10 +16,11 @@ public class consultaServlet extends HttpServlet {
 
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		PaisesService pais=new PaisesService();
-		List<String> ps=pais.continentes();
-		request.setAttribute("continente", ps);
+		
+		//recoge lista de continentes y se la pasa a la JSP
+		PaisesService consulta=new PaisesService();
+		List<String> continentes=consulta.continentes();
+		request.setAttribute("continente", continentes);
 		request.getRequestDispatcher("continentes.jsp").forward(request, response);
 	}
 }
