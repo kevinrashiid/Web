@@ -35,3 +35,4 @@ public class GrabarEmpleadoServlet extends HttpServlet {
 		request.getRequestDispatcher("inicio.html").forward(request, response);
 	}
 }
+
