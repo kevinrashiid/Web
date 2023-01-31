@@ -9,12 +9,14 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Arrays;
 import java.util.stream.Stream;
+
 import com.google.gson.Gson;
+
 import model.Pais;
 
 public class PaisesLocator {
 
-	String url="c:\\Ficheros\\paises.json";
+	String url="/Users/kevinrashid/Documents/ficheros/otros/LosPaises.json"; 
 	String ruta="https://restcountries.com/v2/all";
 	Gson gson=new Gson();
 	
@@ -27,8 +29,7 @@ public class PaisesLocator {
 		catch(IOException ex) {
 			ex.printStackTrace();
 			return Stream.empty();
-		}
-	*/
+		}*/
 		//crear HttpRequest
 		HttpRequest request=HttpRequest.newBuilder() //Builder
 							.uri(URI.create(ruta)) //Builder
@@ -44,7 +45,6 @@ public class PaisesLocator {
 			return Arrays.stream(gson.fromJson(response.body().toString(), Pais[].class)); //Stream<Pais>
 			
 		} catch (IOException | InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return Stream.empty();
 		}

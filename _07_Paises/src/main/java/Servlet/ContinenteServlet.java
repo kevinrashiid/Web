@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.PaisesService;
 
-@WebServlet("/consultaServlet")
-public class consultaServlet extends HttpServlet {
+@WebServlet("/ContinenteServlet")
+public class ContinenteServlet extends HttpServlet {
 
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//recoge lista de continentes y se la pasa a la JSP
 		PaisesService consulta=new PaisesService();
-		List<String> continentes=consulta.continentes();
-		request.setAttribute("continente", continentes);
+		List<String> continentes=consulta.listaContinentes();
+		request.setAttribute("continentes", continentes);
 		request.getRequestDispatcher("continentes.jsp").forward(request, response);
 	}
 }

@@ -19,10 +19,10 @@ public class VerPaisesServlet extends HttpServlet {
 		
 		PaisesService verPais=new PaisesService();
 		//recogemos el parametro con el continente seleccionado
-		String continente=request.getParameter("region");
+		String continente=request.getParameter("continente");
 		List<Pais> ListaPais=verPais.listaDePaises(continente);
 		request.setAttribute("paises", ListaPais);
 		request.setAttribute("continente", continente);
-		request.getRequestDispatcher("paises.jsp").forward(request, response);
+		request.getRequestDispatcher("Paises.jsp").forward(request, response);
 	}
 }

@@ -8,17 +8,17 @@ public class PaisesService {
 	//creamos el objeto locator para que podemos utilizar metodos de PaisesLocator
 	PaisesLocator locator=new PaisesLocator();
 	
-	public List<Pais> listaDePaises(String region){
+	public List<Pais> listaDePaises(String continente){
 		return locator
 				.getJsonStream()
-				.filter(e->e.getCapital().equalsIgnoreCase(region))
+				.filter(e->e.getRegion().equalsIgnoreCase(continente))
 				.toList();
 	}
 	
-	public List<String> continentes(){
+	public List<String> listaContinentes(){
 		return locator
 				.getJsonStream()
-				.map(e->e.getName())
+				.map(e->e.getRegion())
 				.toList();
 	}
 }
