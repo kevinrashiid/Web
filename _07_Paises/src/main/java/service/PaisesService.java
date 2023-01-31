@@ -12,6 +12,7 @@ public class PaisesService {
 		return locator
 				.getJsonStream()
 				.filter(e->e.getRegion().equalsIgnoreCase(continente))
+				.distinct()
 				.toList();
 	}
 	
@@ -19,6 +20,7 @@ public class PaisesService {
 		return locator
 				.getJsonStream()
 				.map(e->e.getRegion())
+				.distinct()
 				.toList();
 	}
 }
