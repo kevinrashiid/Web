@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="container">
-			<h2>Paises del continente:<%= request.getAttribute("continente") %></h2>
+			<h2>Paises del continente: <%=request.getAttribute("continente") %></h2>
 			<!-- hacemos la tabla -->
 			<%List<Pais> paises=(List<Pais>)request.getAttribute("paises"); %>
 			<table class="table table-striped table-bordered">
