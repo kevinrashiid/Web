@@ -21,6 +21,7 @@ public class PaisesLocator {
 	Gson gson=new Gson();
 	
 	public Stream<Pais> getJsonStream(){
+		
 		/*
 		try(FileReader fr=new FileReader(url);){
 			Pais[]paises=gson.fromJson(fr, Pais[].class);
@@ -30,6 +31,7 @@ public class PaisesLocator {
 			ex.printStackTrace();
 			return Stream.empty();
 		}*/
+		
 		//crear HttpRequest
 		HttpRequest request=HttpRequest.newBuilder() //Builder
 							.uri(URI.create(ruta)) //Builder
