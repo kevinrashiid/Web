@@ -32,5 +32,4 @@ public class AltaServlet extends HttpServlet {
 		service.guardarEmpleado(empleado);
 		request.getRequestDispatcher("inicio.html").forward(request, response);
 	}
-
 }

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import soloElService.PaisesService;
 import soloElService.PaisesServiceFactory;
-import soloElService.PaisesServiceIMPL;
 
 @WebServlet("/ContinenteServlet")
 public class ContinenteServlet extends HttpServlet {
