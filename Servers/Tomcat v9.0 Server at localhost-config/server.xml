@@ -152,7 +152,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      </Host>
+      <Context docBase="_12_registro_contactos" path="/_12_registro_contactos" reloadable="true" source="org.eclipse.jst.jee.server:_12_registro_contactos"/><Context docBase="_01_buscador" path="/_01_buscador" reloadable="true" source="org.eclipse.jst.jee.server:_01_buscador"/><Context docBase="_03_empleados" path="/_03_empleados" reloadable="true" source="org.eclipse.jst.jee.server:_03_empleados"/><Context docBase="_02_formacion" path="/formacion" reloadable="true" source="org.eclipse.jst.jee.server:_02_formacion"/><Context docBase="_07_Paises" path="/_07_Paises" reloadable="true" source="org.eclipse.jst.jee.server:_07_Paises"/><Context docBase="_08_formacionFactoria" path="/_08_formacionFactoria" reloadable="true" source="org.eclipse.jst.jee.server:_08_formacionFactoria"/><Context docBase="_05_empleados_JSON" path="/EmpleadoConJSON" reloadable="true" source="org.eclipse.jst.jee.server:_05_empleados_JSON"/><Context docBase="_06_empleados_JSON_Serializador" path="/_06_EmpleadosSerializador" reloadable="true" source="org.eclipse.jst.jee.server:_06_empleados_JSON_Serializador"/><Context docBase="_10_PaisesFactory" path="/Paises_Factory" reloadable="true" source="org.eclipse.jst.jee.server:_10_PaisesFactory"/><Context docBase="_09_empleados_factoria" path="/_09_empleados_factoria" reloadable="true" source="org.eclipse.jst.jee.server:_09_empleados_factoria"/></Host>
     </Engine>
   </Service>
 </Server>
