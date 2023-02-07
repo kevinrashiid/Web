@@ -1,14 +1,12 @@
 package main;
 
-import service.PedidosTiendasService;
+import service.PedidosTiendasServiceFactory;
 
 public class Lanzador {
 
 	public static void main(String[] args) {
+		PedidosTiendasServiceFactory p1=new PedidosTiendasServiceFactory();
 		
-		 PedidosTiendasService p1=new 
-		
-				 
 		
 		
 	}

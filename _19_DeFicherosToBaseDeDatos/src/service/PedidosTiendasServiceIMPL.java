@@ -13,9 +13,11 @@ import java.util.List;
 import model.pedidos;
 import service.locator.ConnectionLocator;
 
-//String ruta="C:\\TufKevin\\Eclipse\\Ficheros"
 public class PedidosTiendasServiceIMPL implements PedidosTiendasService {
-
+	public String ruta="C:\\TufKevin\\Eclipse\\Ficheros";
+	
+	
+	
 	@Override
 	public List<pedidos> pedidosTienda(String dirFichero) {
 		Path pt=Path.of(dirFichero);

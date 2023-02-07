@@ -1,4 +1,4 @@
-package principal;
+jepackage principal;
 
 import multiplicaciones.TablasDeMultiplicaciones;
 
