@@ -1,9 +1,12 @@
 package service;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Contacto;
 import service.locator.ConnectionLocator;
@@ -54,5 +57,25 @@ public class ContactosServiceImpl implements ContactosService {
 		}
 		
 	}
-	
-}
+
+	@Override
+	public List<Contacto> mostrarContactos() {
+		List<Contacto> contactos=new ArrayList<>();
+		try(Connection con=ConnectionLocator.getConnection();){
+			String sql="select * from contactos";
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(sql); //forwardonly
+			while(rs.next()) {
+				contactos.add(new Contacto(rs.getInt("idContacto"),
+						rs.getString("nombre"),
+						rs.getString("email"),
+						rs.getInt("edad")));
+			}
+
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return contactos;
+	}
+}	
+

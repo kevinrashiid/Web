@@ -18,17 +18,17 @@ public class PedidosTiendasServiceIMPL implements PedidosTiendasService {
 
 	@Override
 	public List<pedidos> pedidosTienda(String dirFichero) {
-		Path pr=Path.of(dirFichero);
-		try {
-		return Files.lines(pr)//Stram<String>
-		.map(s->{
-			String[] datos=s.split("[,]");
-			return new pedidos(0,datos[0],Integer.parseInt(datos[1]),LocalDate.parse(datos[2]))})
-				.toList();
-		}
-		catch(IOException e) {
-			e.printStackTrace();
-			return List.of();
+		Path pt=Path.of(dirFichero);
+		try{
+			return Files.lines(pt)//Stream<String>
+			.map(s->{
+				String[] datos=s.split("[,]");
+				return new pedidos(0,datos[0],Integer.parseInt(datos[1]),LocalDate.parse(datos[2]));
+			})
+			.toList();
+		}catch(IOException ex) {
+			ex.printStackTrace();
+			return List.of(); //lista vacía
 		}
 	}
 
