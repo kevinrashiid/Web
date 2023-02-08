@@ -37,8 +37,9 @@ public class PedidosTiendasServiceIMPL implements PedidosTiendasService {
 	@Override
 	public void guardarPedido(pedidos pedido) {
 		try(Connection con=ConnectionLocator.getConnection()){
-			String sql="inset into pedidos(producto,unidade,fecha)values(?,?,?)";
+			String sql="insert into pedidos(producto,unidade,fecha)values(?,?,?)";
 			//por que no sabemos los datos y utilizamos ?,?,?
+			//Y PreparedStatement por que no tenemos los datos es decir no lo sabemos
 			PreparedStatement ps=con.prepareStatement(sql);
 			ps.setString(1, pedido.getNombreProducto());
 			ps.setInt(2, pedido.getUnidadesProducto());
@@ -86,10 +87,11 @@ public class PedidosTiendasServiceIMPL implements PedidosTiendasService {
 			while(rs.next()) {
 				total+=rs.getInt("unidades");
 			}*/
-			//opcion 2: utilizar funciones de agregado
-			//funciones de agregados //funciones para hacer calculos
-			//ejemplo una media(avg) una suma(sum) 
-			//lo que te devuelve sum es una suma
+			/*Opcion 2: 
+			Utilizar las --funciones de agregado--
+			funciones de agregados son funciones para hacer calculos
+			ejemplo una media(avg) una suma(sum) 
+			lo que te devuelve sum es una suma*/
 			String sql="select sum(unidades) from pedidos";
 			Statement st=con.createStatement();
 			ResultSet rs=st.executeQuery(sql);
@@ -107,8 +109,19 @@ public class PedidosTiendasServiceIMPL implements PedidosTiendasService {
 		String laFecha="";
 		try(Connection con=ConnectionLocator.getConnection();){
 			String sql ="select productos from pedidos order by fecha DESC";
+			/*.createStatement 
+			es para crear un objeto statement que se utiliza 
+			para ejecutar una sentencia SQL en una base de datos.
+			Este objeto permite enviar comandos SQL a la base de datos 
+			y procesar los resultados obtenidos*/ 
 			Statement st=con.createStatement();
+			/* variable de tipo Resulset que se utiliza para almacenar los resultados de una consulta SQL.*/
+			/*En resumen, esta línea de código ejecuta una consulta SQL y almacena los resultados en un objeto ResultSet llamado rs.*/
 			ResultSet rs=st.executeQuery(sql);
+			/*es un objeto que contiene el resultado de una consulta SQL 
+			 realizada a una base de datos. Este objeto se utiliza para 
+			 acceder a los datos devueltos por una consulta SELECT y procesarlos 
+			 en una aplicación Java.*/
 			rs.next();//nos desplazamos a la primera fila
 			laFecha=rs.getString("productos");//te saca la fila entera ordenada
 		}

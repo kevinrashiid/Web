@@ -14,7 +14,8 @@ public class Lanzador {
 		t2.start();
 		/*te ejecuta primero todo del t1 y luego todo del t2
 		 t1.run();
-		  t2.run();*/
+		 t2.run();*/
+		
 		//esto es una tarea mas, utilizamos otro hilo mas
 		//se ejecuta junto con las otras dos tareas mas es decir 
 		//me ejecuta a la vez el t1 t2  "haciendo cosas el main..."
