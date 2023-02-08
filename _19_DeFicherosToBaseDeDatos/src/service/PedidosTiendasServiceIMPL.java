@@ -6,7 +6,9 @@ import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,10 +16,8 @@ import model.pedidos;
 import service.locator.ConnectionLocator;
 
 public class PedidosTiendasServiceIMPL implements PedidosTiendasService {
-	public String ruta="C:\\TufKevin\\Eclipse\\Ficheros";
 	
-	
-	
+	//este metodo recibe la ruta del fichero 
 	@Override
 	public List<pedidos> pedidosTienda(String dirFichero) {
 		Path pt=Path.of(dirFichero);
@@ -33,7 +33,7 @@ public class PedidosTiendasServiceIMPL implements PedidosTiendasService {
 			return List.of(); //lista vacía
 		}
 	}
-
+	//
 	@Override
 	public void guardarPedido(pedidos pedido) {
 		try(Connection con=ConnectionLocator.getConnection()){
@@ -49,13 +49,13 @@ public class PedidosTiendasServiceIMPL implements PedidosTiendasService {
 			ex.printStackTrace();
 		}
 	}
-
+	//recibe una LISTA de pedidos y los guarda en la base de datos
 	@Override
 	public void guardarPedidos(List<pedidos> pedidoS) {
 		try(Connection con=ConnectionLocator.getConnection();){
 			//desactivamos autocomint para que todos los insert esten en la misma tx
 			con.setAutoCommit(false);
-			String sql="inset into pedidoS(producto,unidade,fecha)values(?,?,?)";
+			String sql="insert into pedidos(productos,unidades,fecha) values(?,?,?)";
 			PreparedStatement ps=con.prepareStatement(sql);
 			for(pedidos s:pedidoS) {
 				ps.setString(1, s.getNombreProducto());
@@ -69,5 +69,52 @@ public class PedidosTiendasServiceIMPL implements PedidosTiendasService {
 		catch(SQLException ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+	//metodo que suma el total de unidades
+	@Override
+	public int totalDeUnidades() {
+		int total=0;
+		try(Connection con=ConnectionLocator.getConnection();){
+			//opcion 1 para 
+			/*String sql="select unidades from pedidos";
+			Statement ps=con.createStatement();
+			//debemos convertir el LocalDate en java.sql.Date
+			//las  sql select siempre llevan un ResultSet  
+			ResultSet rs=ps.executeQuery(sql);
+			//recorremos Resulset y sumamos todas las unidades
+			while(rs.next()) {
+				total+=rs.getInt("unidades");
+			}*/
+			//opcion 2: utilizar funciones de agregado
+			//funciones de agregados //funciones para hacer calculos
+			//ejemplo una media(avg) una suma(sum) 
+			//lo que te devuelve sum es una suma
+			String sql="select sum(unidades) from pedidos";
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(sql);
+			rs.next();//nos desplazamos a la primera y unica fila
+			total=rs.getInt(1);//y le pedidos el valor
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		return total;
+	}
+	
+	@Override
+	public String productoUltimoProducto() {
+		String laFecha="";
+		try(Connection con=ConnectionLocator.getConnection();){
+			String sql ="select productos from pedidos order by fecha DESC";
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(sql);
+			rs.next();//nos desplazamos a la primera fila
+			laFecha=rs.getString("productos");//te saca la fila entera ordenada
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		return laFecha;
 	}
 }
