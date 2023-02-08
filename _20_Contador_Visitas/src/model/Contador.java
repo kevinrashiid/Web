@@ -19,6 +19,7 @@ public class Contador {
 		}
 		valor=a;
 	}
+	
 	//esto 
 	public void descrementar(){
 		synchronized(this) {
