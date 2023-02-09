@@ -10,9 +10,13 @@ public class Lanzador {
 		Ascendente t1=new Ascendente();
 		Descendente t2=new Descendente();
 		//se ponen en ejecucion concurrente
+		//es decir se ejecutan a la par
+		//NO se puede llamar dos veces a start sobre un mismo thread 
 		t1.start();
 		t2.start();
-		/*te ejecuta primero todo del t1 y luego todo del t2
+		/*
+		 y run se ejecuta en orden primero t1 y inmediatamente el siguiente
+		 //te ejecuta primero todo del t1 y LUEGO todo del t2
 		 t1.run();
 		 t2.run();*/
 		
