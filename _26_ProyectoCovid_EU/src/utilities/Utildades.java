@@ -8,7 +8,7 @@ import java.time.temporal.ChronoField;
 
 public class Utildades {
 	
-	public static LocalDate convertirTextoFecha(String fecha) {
+	public LocalDate convertirTextoFecha(String fecha) {
 		DateTimeFormatter format=new DateTimeFormatterBuilder()
 				//DateTimeFormatterBuilder es un objeto para crear otros objetos de tipo fecha 
 				.appendPattern("YYYY-ww")
@@ -17,5 +17,4 @@ public class Utildades {
 				.toFormatter();
 		return LocalDate.parse(fecha, format);
 	}
-	
 }
