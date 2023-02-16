@@ -3,10 +3,13 @@ package Ventanas;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -64,14 +67,19 @@ public class VentanaCliente extends JFrame {
 		JButton bLogin = new JButton("Login");
 		bLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				//AUTENTIFICACION DE CLIENTES MEDIANTE BASE DE DATOS
 				ClientesService service=LibreriaServiceFactory.getClientesService();
 				LibrosService librosService=LibreriaServiceFactory.getLibrosService();
 				String mensaje;
+				
 				if(service.existeContacto(celdaUsuario.getText(), pwd.getText())) {
 					//creamos la ventana de libros y le pasamos la lista de libros
 					//para que los muestre
-					new VentanaLibros(librosService.listaDeLibros());
+					
+					new VentanaConsultaLibros(librosService.listaDeIdTema());
+				}else {
+					JOptionPane.showConfirmDialog(VentanaCliente.this, "Usuario no valido");
 				}
 			}
 		});
