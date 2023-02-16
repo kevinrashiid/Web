@@ -1,14 +1,17 @@
 package serviceLibros;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Libro;
 import model.Tema;
+import model.Venta;
 import service.locator.ConnectionLocator;
 
 public class LibrosServiceIMPL implements LibrosService{
@@ -70,5 +73,32 @@ public class LibrosServiceIMPL implements LibrosService{
 			e.printStackTrace();
 		}
 		return listaDeLibrosPorTema;
+	}
+	@Override
+	public List<Venta> ventaPorFechas(String fechaDeInicio, String fechaDeFinal) {
+		List<Venta> ventas=new ArrayList<>();
+		try(Connection con=ConnectionLocator.getConnection();){
+			String sql="Select ";
+			PreparedStatement ps=con.prepareStatement(sql);
+			//convertimos de String a LocalDate
+			LocalDate fInicio=LocalDate.parse(fechaDeFinal);
+			LocalDate fFinal=LocalDate.parse(fechaDeFinal);
+			
+			ps.setDate(1, Date.valueOf(fInicio));
+			ps.setDate(2, Date.valueOf(fFinal));
+			
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				Venta vt=new Venta(rs.getString("titulo"),
+						rs.getString("autor"),
+						rs.getString("tema"),
+						rs.getDate("fecha"));
+					ventas.add(vt);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ventas;
 	}
 }
