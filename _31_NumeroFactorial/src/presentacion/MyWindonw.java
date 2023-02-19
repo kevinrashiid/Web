@@ -21,7 +21,7 @@ public class MyWindonw extends JFrame {
 		this.setVisible(true);
 	}
 	void componentes() {
-		this.setLayout(null);
+		getContentPane().setLayout(null);
 		
 		//creando objeto
 		JLabel num=new JLabel("Introduce numero: ");
@@ -30,10 +30,10 @@ public class MyWindonw extends JFrame {
 		JLabel resultado=new JLabel();
 		
 		//dando lugar a los objetos
-		num.setBounds(150, 50, 150, 30);
+		num.setBounds(150, 58, 150, 30);
 		celdaFactorial.setBounds(150,100,150,30);
-		botonFactorial.setBounds(300, 170, 200, 30);
-		resultado.setBounds(150, 200, 200, 30);
+		botonFactorial.setBounds(150, 140, 200, 30);
+		resultado.setBounds(150, 190, 200, 30);
 		
 		//Dandole accion/evento al botonFactorial
 		botonFactorial.addActionListener(new ActionListener() {
@@ -46,10 +46,10 @@ public class MyWindonw extends JFrame {
 		});
 		
 		//añadimos componentes 
-		this.add(num);
-		this.add(botonFactorial);
-		this.add(celdaFactorial);
-		this.add(resultado);
+		getContentPane().add(num);
+		getContentPane().add(botonFactorial);
+		getContentPane().add(celdaFactorial);
+		getContentPane().add(resultado);
 	}
 	
 	//metodo para sacar factorial de N numeros
